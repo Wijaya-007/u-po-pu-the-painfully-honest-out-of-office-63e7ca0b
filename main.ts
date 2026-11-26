@@ -21,7 +21,9 @@ if (LINE !== LINE.trim() || LINE.includes("  ")) {
   throw new Error("line must not have leading/trailing whitespace or double spaces");
 }
 
-const outDir = "/output";
+const outDir =
+  process.env.MAKEFUN_OUTPUT_DIR ||
+  join(dirname(fileURLToPath(import.meta.url)), "output");
 const outPath = join(outDir, "entry.txt");
 
 mkdirSync(outDir, { recursive: true });
